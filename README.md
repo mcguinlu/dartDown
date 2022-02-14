@@ -1,6 +1,6 @@
 # dartDown
 
-> Note: this project is a modification of the [`bartDown`](https://github.com/powerlanguage/bartDown) project created by James Wardle (@powerlanguage).
+> Note: this project is a modification of the [`bartDown`](https://github.com/powerlanguage/bartDown) project created by James Wardle ([@powerlanguage](https://github.com/powerlanguage)).
 
 <br>
 
@@ -23,6 +23,6 @@ _dartDown_ can be customized using the following url parameters:
 
 ## Misc:
 
-* Because the API does not require a key, I can host this app via GitHub pages.
-* This project makes use of the [`xml2json` API](https://github.com/factmaven/xml-to-json) maintained by @factmaven: 
+* Because the API does not require a key, I can host the app via GitHub pages. Otherwise, I'd need a hosting solution that allows for secrets.
+* This project makes use of the [`xml2json` API](https://github.com/factmaven/xml-to-json) maintained by [@factmaven](https://github.com/factmaven): 
 * This project uses: [offline by Stéphanie Rusch from the Noun Project](https://thenounproject.com/term/offline/90580)
