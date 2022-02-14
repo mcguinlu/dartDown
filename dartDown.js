@@ -14,7 +14,7 @@ const STATION_CODE = urlParams.station || 'gcdk';
 // departure times below the cutoff will not be displayed
 const MINUTE_CUTOFF = parseInt(urlParams.minute_cutoff) || 3;
 // How often to poll for updates
-const UPDATE_MS = 10000;
+const UPDATE_MS = 60000;
 // See https://api.bart.gov/docs/etd/etd.aspx
 const BASE_URL = 'https://api.bart.gov/api/etd.aspx';
 
