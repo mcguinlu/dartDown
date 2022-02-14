@@ -1,21 +1,28 @@
-# bartDown
+# dartDown
 
-![bartDown](/screenshots/bartDown.png)
+> Note: this project is a modification of the [`bartDown`](https://github.com/powerlanguage/bartDown) project created by James Wardle (@powerlanguage).
 
-_bartDown_ displays the estimated departure times for a [BART station](http://www.bart.gov/).  It aims to make functional information aesthetically pleasing so it can be displayed in the home.  Colors denote the Bart line and North and South-bound depatures are on the top and bottom row respectively.
+<br>
 
-See it in action: http://powerlanguage.co.uk/bartDown/
+![dartDown](screenshots/dartDown.jpg)
+
+<br>
+
+_dartDown_ displays the estimated departure times for a [DART station](https://www.irishrail.ie/).  It aims to make functional information aesthetically pleasing so it can be displayed in the home. North and South-bound departures are on the top and bottom row respectively.  Colors denote the relative distance of the final from the city center (Malahide/Greystones = dark green, Howth/Bray = light green).
+
+See it in action: https://mcguinlu.github.io/dartDown/
 
 ## Configuration:
 
-_bartDown_ can be customized using the following url parameters:
+_dartDown_ can be customized using the following url parameters:
 
-* `?station=woak` - [station of origin abbreviation](https://api.bart.gov/docs/overview/abbrev.aspx), default 19th St Oakland
+* `?station=gcdk` - [station of origin abbreviation](https://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML), default Grand Canal Dock.
 * `?limit=5` - number of trains to display in either direction, default 3
 * `?minute_cutoff=2` - departure times below the cutoff will not be displayed, default 3
-* You can chain multiple parameters together using `&` E.g. http://powerlanguage.co.uk/bartDown/?station=hayw&limit=5&minute_cutoff=5
+* You can chain multiple parameters together using & E.g. https://mcguinlu.github.io/dartDown/?station=mhide&limit=5&minute_cutoff=5
 
 ## Misc:
 
-* You can [get a BART API key here](https://api.bart.gov/docs/overview/index.aspx).
+* Because the API does not require a key, I can host this app via GitHub pages.
+* This project makes use of the [`xml2json` API](https://github.com/factmaven/xml-to-json) maintained by @factmaven: 
 * This project uses: [offline by Stéphanie Rusch from the Noun Project](https://thenounproject.com/term/offline/90580)
