@@ -16,14 +16,15 @@ body {
 .estimate {
   color: #fff;
   margin-right: 0.1em;
+  margin-left: 0.1em;
 }
 
-.yellow {
-  color: #c6c73d;
+.howth, .bray {
+  color: #d2d469;
 }
 
-.orange {
-  color: #da8c12;
+.malahide, .greystones {
+  color: #4c6a44;
 }
 
 .red {
