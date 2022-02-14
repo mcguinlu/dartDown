@@ -10,7 +10,7 @@ const urlParams = window.location.search
 // number of trains to display in either direction
 const MAX_TRAINS_PER_DIRECTION = parseInt(urlParams.limit) || 3;
 // station of origin abbreviation - https://api.bart.gov/docs/overview/abbrev.aspx
-const STATION_CODE = urlParams.station || '19th';
+const STATION_CODE = urlParams.station || 'gcdk';
 // departure times below the cutoff will not be displayed
 const MINUTE_CUTOFF = parseInt(urlParams.minute_cutoff) || 3;
 // How often to poll for updates
@@ -19,36 +19,39 @@ const UPDATE_MS = 10000;
 const BASE_URL = 'https://api.bart.gov/api/etd.aspx';
 
 // Scale content
-const fontWidth = 100 / (MAX_TRAINS_PER_DIRECTION * 1.4);
+const fontWidth = 100 / (MAX_TRAINS_PER_DIRECTION * 1.5);
 document.body.style.fontSize = `${fontWidth}vw`;
 
 // TODO:
 // Allow user to pick station from a dropdown form
 
 async function bartDown() {
+  // const response = await fetch(
+  //   `${BASE_URL}?key=${API_KEY}&cmd=etd&orig=${STATION_CODE}&json=y`,
+  //   // `https://api.factmaven.com/xml-to-json/?xml=http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=mhide`,
+  // );
+
   const response = await fetch(
-    `${BASE_URL}?key=${BART_API_KEY}&cmd=etd&orig=${STATION_CODE}&json=y`,
+      `https://api.factmaven.com/xml-to-json/?xml=http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=${STATION_CODE}`,
   );
 
   const data = await response.json();
 
-  // Get an array of estimated departures from the response data
-  const estimatesForStation = data.root.station[0].etd.reduce((acc, etd) => {
-    return acc.concat(etd.estimate);
-  }, []);
+  const estimatesForStation = data.ArrayOfObjStationData.objStationData
+  console.log(estimatesForStation);
 
   const estimates = estimatesForStation
     // Filter estimates that don't match criteria
-    .filter((estimate) => estimate.minutes >= MINUTE_CUTOFF)
+    .filter((estimate) => estimate.Duein >= MINUTE_CUTOFF) // Keep trains that are due in less than the cutoff
+    .filter((estimate) => estimate.Traintype == 'DART') // Keep only DART trains
     // Transform 'Leaving' to 00 and ensure all times are double digits
-    // Note that we're mutating here :P
     .map((estimate) => {
-      estimate.minutes = estimate.minutes === 'Leaving' ? '00' : estimate.minutes;
-      estimate.minutes = estimate.minutes.length < 2 ? '0' + estimate.minutes : estimate.minutes;
+      estimate.Duein = estimate.Duein === 'Leaving' ? '00' : estimate.Duein;
+      estimate.Duein = estimate.Duein.length < 2 ? '0' + estimate.Duein : estimate.Duein;
       return estimate;
     })
     // Sort departures from soonest to latest
-    .sort((a, b) => a.minutes - b.minutes);
+    .sort((a, b) => a.Duein - b.Duein);
 
   // Hide the error state
   document.getElementById('disconnected').style.display = 'none';
@@ -59,19 +62,19 @@ async function bartDown() {
   });
 
   let directionCount = {
-    north: 0,
-    south: 0,
+    northbound: 0,
+    southbound: 0,
   };
 
   // Add the new estimates to the DOM
   estimates.forEach((estimate) => {
-    const direction = estimate.direction.toLowerCase();
+    const direction = estimate.Direction.toLowerCase();
     if (directionCount[direction] < MAX_TRAINS_PER_DIRECTION) {
       document
         .getElementById(direction)
         .insertAdjacentHTML(
           'beforeEnd',
-          `<div class="estimate ${estimate.color.toLowerCase()}">${estimate.minutes}</div>`,
+          `<div class="estimate ${estimate.Destination.toLowerCase()}">${estimate.Duein}</div>`,
         );
 
       directionCount[direction]++;
