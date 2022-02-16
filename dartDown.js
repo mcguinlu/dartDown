@@ -1,3 +1,4 @@
+// Handle parameter changes
 const urlParams = window.location.search
   .substring(1)
   .split('&')
@@ -14,22 +15,15 @@ const STATION_CODE = urlParams.station || 'gcdk';
 // departure times below the cutoff will not be displayed
 const MINUTE_CUTOFF = parseInt(urlParams.minute_cutoff) || 3;
 // How often to poll for updates
-const UPDATE_MS = parseInt(urlParams.refresh) || 60000;
-// See https://api.bart.gov/docs/etd/etd.aspx
-const BASE_URL = 'https://api.bart.gov/api/etd.aspx';
+const UPDATE_MS = parseInt(urlParams.refresh)*1000 || 60000;
 
 // Scale content
 const fontWidth = 100 / (MAX_TRAINS_PER_DIRECTION * 1.5);
 document.body.style.fontSize = `${fontWidth}vw`;
 
-// TODO:
-// Allow user to pick station from a dropdown form
+async function dartDown() {
 
-async function bartDown() {
-  // const response = await fetch(
-  //   `${BASE_URL}?key=${API_KEY}&cmd=etd&orig=${STATION_CODE}&json=y`,
-  //   // `https://api.factmaven.com/xml-to-json/?xml=http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=mhide`,
-  // );
+  console.log('dartDown');
 
   const response = await fetch(
     `https://api.factmaven.com/xml-to-json/?xml=http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=${STATION_CODE}`,
@@ -37,8 +31,11 @@ async function bartDown() {
 
   const data = await response.json();
 
+  // Check if API has returned any trains
+  trains_available = data.hasOwnProperty('ArrayOfObjStationData');
+
+  
   const estimatesForStation = data.ArrayOfObjStationData.objStationData
-  console.log(estimatesForStation);
 
   const estimates = estimatesForStation
     // Filter estimates that don't match criteria
@@ -85,10 +82,10 @@ async function bartDown() {
 // Display an icon on error
 function displayErrorState(error) {
   console.log(error);
-  // Only display error if it is not the middle of the night
-  // Crude way to handle it, but 
-  var hour = new Date().getHours()
-  if (hour <= 23 || hour >= 7) {
+
+  // If API is showing no trains, say that
+  // Otherwise, show disonnected symbol on error
+  if (trains_available) {
     document.getElementById('disconnected').style.display = 'flex';
   } else {
     document.getElementById('no-trains').style.display = 'flex';
@@ -97,9 +94,9 @@ function displayErrorState(error) {
 }
 
 // Kick it off!
-bartDown().catch(displayErrorState);
+dartDown().catch(displayErrorState);
 
 // Set up recurring call
 setInterval(() => {
-  bartDown().catch(displayErrorState);
+  dartDown().catch(displayErrorState);
 }, UPDATE_MS);
