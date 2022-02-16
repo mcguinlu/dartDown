@@ -57,7 +57,7 @@ body {
   align-items: center;
 }
 
-#disconnected {
+#disconnected{
   display: none;
   justify-content: center;
   height: 100%;
@@ -65,4 +65,10 @@ body {
 
 #disconnected img {
   width: 50%;
+}
+
+#no-trains {
+  display: none;
+  color: white;
+  text-align: center;
 }

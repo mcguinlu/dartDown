@@ -14,7 +14,7 @@ const STATION_CODE = urlParams.station || 'gcdk';
 // departure times below the cutoff will not be displayed
 const MINUTE_CUTOFF = parseInt(urlParams.minute_cutoff) || 3;
 // How often to poll for updates
-const UPDATE_MS = 60000;
+const UPDATE_MS = parseInt(urlParams.refresh) || 60000;
 // See https://api.bart.gov/docs/etd/etd.aspx
 const BASE_URL = 'https://api.bart.gov/api/etd.aspx';
 
@@ -32,7 +32,7 @@ async function bartDown() {
   // );
 
   const response = await fetch(
-      `https://api.factmaven.com/xml-to-json/?xml=http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=${STATION_CODE}`,
+    `https://api.factmaven.com/xml-to-json/?xml=http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=${STATION_CODE}`,
   );
 
   const data = await response.json();
@@ -85,7 +85,15 @@ async function bartDown() {
 // Display an icon on error
 function displayErrorState(error) {
   console.log(error);
-  document.getElementById('disconnected').style.display = 'flex';
+  // Only display error if it is not the middle of the night
+  // Crude way to handle it, but 
+  var hour = new Date().getHours()
+  if (hour <= 23 || hour >= 7) {
+    document.getElementById('disconnected').style.display = 'flex';
+  } else {
+    document.getElementById('no-trains').style.display = 'flex';
+    document.getElementById('no-trains').style.fontSize = `${fontWidth}vw`;
+  }
 }
 
 // Kick it off!
