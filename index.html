@@ -1,25 +1,115 @@
 <html>
 
 <head>
-  <title>dartDown</title>
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="https://github.com/mcguinlu/dartDown" />
-  <meta name="twitter:title" content="dartDown" />
-  <meta name="twitter:description" content="Aesthetically pleasing display for DART train departure times" />
-  <meta name="twitter:image"
-    content="https://raw.githubusercontent.com/mcguinlu/dartDown/master/screenshots/dartDown.jpg" />
+<!-- Basic Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="dartDown: An aesthetically pleasing DART departure board for home display. Shows real-time northbound and southbound train times with color-coded destinations. Customizable station selection, display limits, and time cutoffs.">
+<meta name="keywords" content="DART, Irish Rail, departure board, home display, Grand Canal Dock, Malahide, Howth, Greystones, Bray, real-time trains, Dublin transport, aesthetic transit display">
+<meta name="author" content="dartDown">
+
+<!-- Open Graph Meta Tags for Social Media -->
+<meta property="og:title" content="dartDown - Aesthetic DART Departure Display">
+<meta property="og:description" content="Beautiful, customizable DART departure board showing real-time trains. Color-coded by destination distance, perfect for home display. Supports all DART stations with customizable views.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="dartDown">
+<meta property="og:image" content="https://raw.githubusercontent.com/mcguinlu/dartDown/master/screenshots/dartDown.jpg">
+<meta property="og:image:alt" content="dartDown DART departure board display showing train times">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:url" content="https://mcguinlu.github.io/dartDown/">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="dartDown - Aesthetic DART Departure Display">
+<meta name="twitter:description" content="Beautiful DART departure board for your home. Shows north/southbound trains with color-coded destinations. Customizable station selection and display options.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mcguinlu/dartDown/master/screenshots/dartDown.jpg">
+<meta name="twitter:image:alt" content="dartDown DART departure board display showing train times">
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta http-equiv="refresh" content="180">
+<meta name="language" content="English">
+<meta name="revisit-after" content="1 day">
+<meta name="application-name" content="dartDown">
+
+<!-- Schema.org Markup for Rich Snippets -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "dartDown",
+  "description": "An aesthetically pleasing display of DART train departures, designed for home use. Features color-coded destinations and customizable views.",
+  "applicationCategory": "Transportation Service",
+  "operatingSystem": "Any",
+  "image": "https://raw.githubusercontent.com/mcguinlu/dartDown/master/screenshots/dartDown.jpg",
+  "screenshot": "https://raw.githubusercontent.com/mcguinlu/dartDown/master/screenshots/dartDown.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "featureList": [
+    "Real-time DART departure times",
+    "Color-coded destination displays",
+    "Customizable station selection",
+    "Adjustable number of displayed trains",
+    "Configurable minimum departure time cutoff",
+    "North and South-bound train separation",
+    "URL parameter customization"
+  ],
+  "url": "https://mcguinlu.github.io/dartDown/",
+  "sameAs": "https://mcguinlu.github.io/dartDown/",
+  "parameters": [
+    {
+      "@type": "PropertyValue",
+      "name": "station",
+      "value": "Station code (e.g., gcdk for Grand Canal Dock)"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "limit",
+      "value": "Number of trains per direction (default: 3)"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "minute_cutoff",
+      "value": "Minimum minutes until departure (default: 3)"
+    }
+  ]
+}
+</script>
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://mcguinlu.github.io/dartDown/">
+
+<!-- Additional Meta Tags for Features -->
+<meta name="customization" content="station=gcdk&limit=5&minute_cutoff=2">
+<meta name="coverage" content="Dublin DART Line: Malahide, Howth, Bray, Greystones">
+<meta name="format-detection" content="telephone=no">
 </head>
 
 <body>
   <script src="dartDown.js" type="text/javascript"></script>
   <link rel="stylesheet" href="dartDown.css" />
   <div id="lines">
-    <div id="no-trains" class="line">No trains</div>
-    <div id="northbound" class="line"></div>
-    <div id="southbound" class="line"></div>
-    <div id="disconnected" class="line">
-      <img src="offline.svg" />
+    <div class="line-container">
+      <div class="titles">
+        <span class="howth-title">Howth</span>
+        <span class="malahide-title">Malahide</span>
+      </div>
+      <div id="northbound" class="line"></div>
     </div>
+
+    <div class="line-container">
+      <div id="southbound" class="line"></div>
+      <div class="titles">
+        <span class="bray-title">Bray</span>
+        <span class="greystones-title">Greystones</span>
+      </div>
+    </div>
+
+    <div id="disconnected" class="line">Disconnected</div>
+    <div id="no-trains" class="line">No trains</div>
   </div>
 </body>
 

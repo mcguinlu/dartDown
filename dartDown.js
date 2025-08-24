@@ -41,14 +41,14 @@ async function dartDown() {
 
     // Filter and process estimates
     const estimates = estimatesForStation
-      .filter((estimate) => parseInt(estimate.Duein) >= MINUTE_CUTOFF) // Keep trains that are due in less than the cutoff
-      .filter((estimate) => estimate.Traintype === 'DART') // Keep only DART trains
-      .map((estimate) => {
-        estimate.Duein = estimate.Duein === 'Leaving' ? '00' : estimate.Duein;
-        estimate.Duein = estimate.Duein.length < 2 ? '0' + estimate.Duein : estimate.Duein;
-        return estimate;
-      })
-      .sort((a, b) => parseInt(a.Duein) - parseInt(b.Duein));
+    .map((estimate) => {
+      estimate.Duein = estimate.Duein === 'Leaving' ? '00' : estimate.Duein;
+      estimate.Duein = estimate.Duein.length < 2 ? '0' + estimate.Duein : estimate.Duein;
+      return estimate;
+    })
+    .filter((estimate) => parseInt(estimate.Duein) >= MINUTE_CUTOFF) // Keep trains that are due in less than the cutoff
+    .filter((estimate) => estimate.Traintype === 'DART10') // Keep only DART trains
+    .sort((a, b) => parseInt(a.Duein) - parseInt(b.Duein));
 
     // Hide the error state
     document.getElementById('disconnected').style.display = 'none';
@@ -88,11 +88,10 @@ function displayErrorState(error) {
 
   // If API is showing no trains, say that
   // Otherwise, show disconnected symbol on error
-  if (trains_available) {
-    document.getElementById('disconnected').style.display = 'flex';
+  if (!window.navigator.onLine) {
+    document.getElementById('disconnected').style.display = 'inline';
   } else {
-    document.getElementById('no-trains').style.display = 'flex';
-    document.getElementById('no-trains').style.fontSize = `${fontWidth}vw`;
+    document.getElementById('no-trains').style.display = 'inline';
   }
 }
 

@@ -9,7 +9,7 @@ body {
   font-size: 20em;
   letter-spacing: 0.02em;
   margin: 0;
-  line-height: 0.9em;
+  line-height: 0.8em;
   font-weight: bold;
 }
 
@@ -23,24 +23,46 @@ body {
   color: #d2d469;
 }
 
+.howth-title, .bray-title {
+  color: #d2d469;
+  font-size: 0.25em;
+  opacity: 0;
+  line-height: 0.25em;
+  transition: opacity 0.1s ease;
+}
+
+.malahide-title, .greystones-title {
+  color: #4c6a44;
+  font-size: 0.25em;
+  opacity: 0;
+  line-height: 0.25em;
+  transition: opacity 0.1s ease;
+}
+
 .malahide, .greystones {
   color: #4c6a44;
 }
 
-.red {
-  color: #d00f0f;
+.line-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
 }
 
-.green {
-  color: #2d8d13;
+.titles {
+  display: flex;
+  gap: 1em;
+  height: 0.25em;
+  pointer-events: none;
 }
 
-.blue {
-  color: #3e60f5;
-}
 
-.white {
-  color: #fff;
+.line-container:hover .howth-title,
+.line-container:hover .bray-title,
+.line-container:hover .malahide-title,
+.line-container:hover .greystones-title {
+  opacity: 1;
 }
 
 #lines {
@@ -59,16 +81,16 @@ body {
 
 #disconnected{
   display: none;
+  color: white;
+  font-size: 0.25em;
   justify-content: center;
-  height: 100%;
-}
-
-#disconnected img {
-  width: 50%;
+  height: 10%;
 }
 
 #no-trains {
   display: none;
+  color: white;
+  font-size: 0.25em;
   color: white;
   text-align: center;
 }
