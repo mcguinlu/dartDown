@@ -44,7 +44,7 @@ body {
   opacity: 0;
 
   transition: opacity 0.5s ease;
-    -webkit-user-select: none;  /* Safari */
+  -webkit-user-select: none;  /* Safari */
   -moz-user-select: none;     /* Firefox */
   -ms-user-select: none;      /* IE10+/Edge */
   user-select: none;          /* Standard */
@@ -70,8 +70,24 @@ body {
 .show-titles .howth-title,
 .show-titles .bray-title,
 .show-titles .malahide-title,
-.show-titles .greystones-title {
+.show-titles .greystones-title, 
+.show-titles .info-icon {
   opacity: 1;
+}
+
+.info-icon {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    color: white;
+    font-size: 0.1em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #lines {
@@ -100,6 +116,5 @@ body {
   display: none;
   color: white;
   font-size: 0.25em;
-  color: white;
   text-align: center;
 }
