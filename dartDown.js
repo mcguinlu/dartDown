@@ -14,6 +14,24 @@ const UPDATE_MS = parseInt(urlParams.get('refresh')) * 1000 || 180000;
 const fontWidth = 100 / (MAX_TRAINS_PER_DIRECTION * 1.5);
 document.body.style.fontSize = `${fontWidth}vw`;
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Add click handler to both line containers
+  const containers = document.querySelectorAll('.line-container');
+  containers.forEach(container => {
+    container.addEventListener('click', () => {
+      // Toggle show-titles class on all containers
+      const shouldShow = !container.classList.contains('show-titles');
+      containers.forEach(c => {
+        if (shouldShow) {
+          c.classList.add('show-titles');
+        } else {
+          c.classList.remove('show-titles');
+        }
+      });
+    });
+  });
+});
+
 async function dartDown() {
   console.log('dartDown');
 

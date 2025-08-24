@@ -17,6 +17,10 @@ body {
   color: #fff;
   margin-right: 0.1em;
   margin-left: 0.1em;
+  -webkit-user-select: none;  /* Safari */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+/Edge */
+  user-select: none;          /* Standard */
 }
 
 .howth, .bray {
@@ -27,16 +31,23 @@ body {
   color: #d2d469;
   font-size: 0.25em;
   opacity: 0;
-  line-height: 0.25em;
-  transition: opacity 0.1s ease;
+  transition: opacity 0.5s ease;
+  -webkit-user-select: none;  /* Safari */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+/Edge */
+  user-select: none;          /* Standard */
 }
 
 .malahide-title, .greystones-title {
   color: #4c6a44;
   font-size: 0.25em;
   opacity: 0;
-  line-height: 0.25em;
-  transition: opacity 0.1s ease;
+
+  transition: opacity 0.5s ease;
+    -webkit-user-select: none;  /* Safari */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+/Edge */
+  user-select: none;          /* Standard */
 }
 
 .malahide, .greystones {
@@ -47,21 +58,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: default;
+
 }
 
 .titles {
   display: flex;
-  gap: 1em;
-  height: 0.25em;
-  pointer-events: none;
+  gap: 0.35em;
+  line-height: 0.28em;
 }
 
-
-.line-container:hover .howth-title,
-.line-container:hover .bray-title,
-.line-container:hover .malahide-title,
-.line-container:hover .greystones-title {
+.show-titles .howth-title,
+.show-titles .bray-title,
+.show-titles .malahide-title,
+.show-titles .greystones-title {
   opacity: 1;
 }
 
