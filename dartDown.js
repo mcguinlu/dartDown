@@ -15,6 +15,17 @@ const fontWidth = 100 / (MAX_TRAINS_PER_DIRECTION * 1.5);
 document.body.style.fontSize = `${fontWidth}vw`;
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Prevent zooming on iOS devices
+  document.addEventListener('touchmove', (e) => {
+    if (e.scale !== 1) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+  
+  document.addEventListener('gesturestart', (e) => {
+    e.preventDefault();
+  });
+
   const infoIcon = document.querySelector('.info-icon');
   const popupMenu = document.querySelector('.popup-menu');
   const titleToggle = document.getElementById('titleToggle');
