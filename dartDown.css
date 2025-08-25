@@ -77,10 +77,16 @@ body {
 
 }
 
-.titles {
+.titles-north {
   display: flex;
-  gap: 0.35em;
+  gap: 0.36em;
   line-height: 0.28em;
+}
+
+.titles-south {
+  display: flex;
+  gap: 0.30em;
+  line-height: 0.32em;
 }
 
 .show-titles .howth-title,
