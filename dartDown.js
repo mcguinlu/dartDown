@@ -99,7 +99,7 @@ async function dartDown() {
     })
     .filter((estimate) => parseInt(estimate.Duein) >= MINUTE_CUTOFF) // Keep trains that are due in less than the cutoff
     .filter((estimate) => estimate.Traintype === 'DART10' || estimate.Traintype === 'DART') // Keep only DART trains
-    .filter((estimate) => estimate.Destination !== estimate.Stationfullname)
+    .filter((estimate) => estimate.Destination === 'Bray' || estimate.Destination === 'Greystones' || estimate.Destination === 'Howth' || estimate.Destination === 'Malahide') // Keep only trains continuing to the end of the line
     .sort((a, b) => parseInt(a.Duein) - parseInt(b.Duein));
 
     // Hide the error state
