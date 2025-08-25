@@ -7,9 +7,10 @@ const app = express();
 // Allowed domains (add your domains here)
 const ALLOWED_ORIGINS = [
   'https://mcguinlu.github.io',
-  'http://localhost:3000',  // For local development
-  'http://localhost:8080',  // Common dev server port
-  'http://127.0.0.1:3000'   // Alternative localhost
+  'http://localhost:3000',  
+  'http://localhost:8080',  
+  'http://127.0.0.1:3000',   
+  'http://127.0.0.1:5500'
 ];
 
 // Configure CORS with origin checking
