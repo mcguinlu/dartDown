@@ -15,27 +15,52 @@ const fontWidth = 100 / (MAX_TRAINS_PER_DIRECTION * 1.5);
 document.body.style.fontSize = `${fontWidth}vw`;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Handle clicks anywhere in the document
-  document.addEventListener('click', (event) => {
-    const containers = document.querySelectorAll('.line-container');
-    const lines = document.querySelector('#lines');
-    const infoIcon = document.querySelector('.info-icon');
+  const infoIcon = document.querySelector('.info-icon');
+  const popupMenu = document.querySelector('.popup-menu');
+  const titleToggle = document.getElementById('titleToggle');
+  const colourToggle = document.getElementById('colourToggle');
+  const lines = document.querySelector('#lines');
+  const containers = document.querySelectorAll('.line-container');
+
+  // Show/hide popup when clicking info icon
+  infoIcon.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent navigation to about.html
+    popupMenu.style.display = popupMenu.style.display === 'none' ? 'block' : 'none';
+  });
+
+  // Handle toggle switch changes
+  titleToggle.addEventListener('change', () => {
+    const shouldShow = titleToggle.checked;
     
-    // Don't toggle if clicking directly on the info icon
-    if (!event.target.closest('.info-icon')) {
-      // Toggle show-titles class on containers and info icon
-      const shouldShow = !lines.classList.contains('show-titles');
-      
-      containers.forEach(c => {
-        if (shouldShow) {
-          c.classList.add('show-titles');
-        } else {
-          c.classList.remove('show-titles');
-        }
-      });
-      
-      lines.classList.toggle('show-titles');
-      infoIcon.classList.toggle('show-titles');
+    containers.forEach(c => {
+      if (shouldShow) {
+        c.classList.add('show-titles');
+      } else {
+        c.classList.remove('show-titles');
+      }
+    });
+    
+    if (shouldShow) {
+      lines.classList.add('show-titles');
+      infoIcon.classList.add('show-titles');
+    } else {
+      lines.classList.remove('show-titles');
+      infoIcon.classList.remove('show-titles');
+    }
+  });
+
+  colourToggle.addEventListener('change', () => {
+    if (colourToggle.checked) {
+      document.body.classList.add('colourblind');
+    } else {
+      document.body.classList.remove('colourblind');
+    }
+  });
+
+  // Close popup when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.icon')) {
+      popupMenu.style.display = 'none';
     }
   });
 });
