@@ -47,8 +47,8 @@ async function dartDown() {
 
   try {
     const response = await fetch(
-      'https://corsproxy.io/?' +
-      `https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=${STATION_CODE}`
+      'https://dart-down.vercel.app/api/proxy?' +
+      `url=https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=${STATION_CODE}`
     );
 
     const xmlText = await response.text();
