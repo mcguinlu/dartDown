@@ -79,7 +79,7 @@ body {
 
 .titles-north {
   display: flex;
-  gap: 0.36em;
+  gap: 0.37em;
   line-height: 0.28em;
 }
 
@@ -143,6 +143,8 @@ body {
   border-radius: 5px;
   opacity: 1;
   display: none;
+  border-color: rgb(255, 255, 255);
+  border-width: 1px;
 }
 
 .toggle-switch {
@@ -157,6 +159,16 @@ body {
 
 .toggle-switch input {
   display: none;
+}
+
+
+.about {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  line-height: normal;
+  text-align: right;
+  padding: 10px;
 }
 
 .slider {
