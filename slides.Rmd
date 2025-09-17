@@ -1,5 +1,6 @@
 ---
 title: "dartDown"
+subtitle: "Aesthetically pleasing DART departure times"
 author: "<br>Luke McGuinness"
 institute: "Dublin DataViz<br>17th September, 2025"
 date: ""
@@ -26,21 +27,15 @@ class: largest
 
 .em[Always] running late 🕐
 
-Interested in .em[functional-aesthetic] data viz 
-
-<br>
-
-.center[.callout[]]
-
-<br>
+--
 
 Wanted to work with a .em['live'] data source
 
+--
 
+Interested in .em[functional-aesthetic] data viz - helping me .em[make decisions] or .em[take action], while also being .em[visually appealing]
 
-
-
-
+<br>
 
 ---
 
@@ -52,22 +47,14 @@ Data from the .em[[Irish Rail API](https://api.irishrail.ie/realtime/)]
 
 HTML/CSS/Javascript.em[*]
 
-Query builder page to create a .em[personalized view]
+.emdart[DART colour palette]
 
-Additional code to enable fullscreen on iOS
+.em[Query builder] page to create a personalized view
 
-.footer[*Drawing on by the [bartDown](https://github.com/powerlanguage/bartDown)]
+Additional code to enable .em[fullscreen on iOS]
 
----
+.footer[*Drawing on by the [bartDown](https://github.com/powerlanguage/bartDown) project]
 
-class: largest
-
-# Challenges | Learnings #1 - 'Live' Data
-
-First time working with live data
-- Irish Rail don't require an API key, but data can be changeable
-- `TrainType` value changed from `DART` -> `DART10` -> `DART`
-- Limited only to those trains going to the end of the line
 
 ---
 
@@ -86,12 +73,22 @@ class: fullbleed
 
 class: largest
 
-# Challenges | Learnings #2 - CORS
+# Learnings #1 - 'Live' Data
 
-- Initially using a free CORS proxy service = Brittle/frustrating
-- Spun up personal CORS proxy service, hosted on Vercel
+First time working with 'live' data source via API
 
-Probably very obvious for those 
+Two early quirks:
+- `TrainType` value changed from `DART` -> `DART10` -> `DART` - .em[use fuzzy matching]
+- Engineering works meant `Destination` variable was changeable - .em[limit to trains going to end of the line]
 
+---
 
+class: largest
 
+# Learnings #2 - CORS
+
+- Required to allow Javascript to access API
+
+- Initially using a free CORS proxy service = .em[brittle/frustrating]
+
+- Spun up personal CORS proxy, hosted on Vercel = .em[much better!]

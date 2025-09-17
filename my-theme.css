@@ -13,10 +13,8 @@ body {
   border-left: 4px solid #4c6a44;
   background: #f3f7fc;
   padding: 1em 1em 1em 1em;
-  margin: 1em 0;
   align: center;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(90, 155, 212, 0.14);
 }
 
 .remark-slide-content.fullbleed .full-iframe {
@@ -33,6 +31,11 @@ code {
 
 .em {
   color: grey75;
+  font-weight: bold;
+}
+
+.emdart {
+  color: #4c6a44;
   font-weight: bold;
 }
 
