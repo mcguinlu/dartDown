@@ -1,0 +1,97 @@
+---
+title: "dartDown"
+author: "<br>Luke McGuinness"
+institute: "Dublin DataViz<br>17th September, 2025"
+date: ""
+output:
+  xaringan::moon_reader:
+    css: ["default", "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      ratio: '16:9'
+      highlightSpans: true
+      highlightLines: true
+      countIncrementalSlides: false
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>
+---
+
+class: largest
+
+# Why?
+
+.em[Always] running late 🕐
+
+Interested in .em[functional-aesthetic] data viz 
+
+<br>
+
+.center[.callout[]]
+
+<br>
+
+Wanted to work with a .em['live'] data source
+
+
+
+
+
+
+
+---
+
+class: largest
+
+# Design Notes
+
+Data from the .em[[Irish Rail API](https://api.irishrail.ie/realtime/)]
+
+HTML/CSS/Javascript.em[*]
+
+Query builder page to create a .em[personalized view]
+
+Additional code to enable fullscreen on iOS
+
+.footer[*Drawing on by the [bartDown](https://github.com/powerlanguage/bartDown)]
+
+---
+
+class: largest
+
+# Challenges | Learnings #1 - 'Live' Data
+
+First time working with live data
+- Irish Rail don't require an API key, but data can be changeable
+- `TrainType` value changed from `DART` -> `DART10` -> `DART`
+- Limited only to those trains going to the end of the line
+
+---
+
+class: fullbleed
+
+<iframe class="full-iframe" src="https://mcguinlu.github.io/dartDown/?refresh=10"></iframe>
+
+
+---
+
+class: fullbleed
+
+<iframe class="full-iframe" src="https://mcguinlu.github.io/dartDown/about"></iframe>
+
+---
+
+class: largest
+
+# Challenges | Learnings #2 - CORS
+
+- Initially using a free CORS proxy service = Brittle/frustrating
+- Spun up personal CORS proxy service, hosted on Vercel
+
+Probably very obvious for those 
+
+
+

@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,700,700i|IBM+Plex+Mono:400,500);
+@import url(//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css);
+
+body {
+  font-family: 'Fira Sans','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+}
+
+.remark-slide-number {
+  position: inherit;
+}
+
+.callout {
+  border-left: 4px solid #4c6a44;
+  background: #f3f7fc;
+  padding: 1em 1em 1em 1em;
+  margin: 1em 0;
+  align: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(90, 155, 212, 0.14);
+}
+
+.remark-slide-content.fullbleed .full-iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+code {
+  color: darkred;
+}
+
+.em {
+  color: grey75;
+  font-weight: bold;
+}
+
+.grey{
+  color: lightgrey;
+}
+
+.remark-slide-content {
+  color: #474747;
+  font-weight: 300;
+  font-weight: 300;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: black;
+}
+
+.largest p, .largest ul, .largest ol { font-size: 35px }
+.larger p, .larger ul, .larger ol { font-size: 23px }
+.small p, .small ul, .small ol { font-size: 12px }
+
+.footer {
+    position: absolute;
+    text-align: right;
+    bottom: 10px;
+    font-size: 15px;
+    right: 5px;
+    height: 15px;
+    width: 100%;
+}
+
+
+.wave {
+  animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+}
